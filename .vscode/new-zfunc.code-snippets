@@ -1,0 +1,23 @@
+{
+	"new-func": {
+		"prefix": "zf",
+		"body": [
+			"# ~/zfuncs/$FUNCTION",
+			"# $NAME",
+			"# $DESCRIPTION",
+			"__$FUNCTION () {",
+			"    echo \"$NAME: $DESCRIPTION\";",
+			"    echo \"-----------\";",
+			"",
+			"    # todo: script here",
+			"",
+			"    echo \"-----------\";",
+			"    echo \"$NAME Complete\";",
+			"}",
+			"",
+			"__$FUNCTION",
+			""
+		],
+		"description": "Create new zsh function"
+	}
+}

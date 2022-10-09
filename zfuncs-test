@@ -1,6 +1,14 @@
 # ~/zfuncs/zfuncs-test
+# ZFunc Test
+# Check to see if zfuncs are accessible
 __zfuncs-test () {
+    echo "ZFunc Test: Check to see if zfuncs are accessible"
+    echo "-------"
+
     echo "Hello world";
+
+    echo "-----------";
+    echo "ZFunc Test Complete";
 }
 
 __zfuncs-test

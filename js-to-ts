@@ -1,20 +1,24 @@
-# ~/zfuncs/ts-to-js.zsh
-# Change extensions from JS -> TS underneath a directory
-__js-to-ts() {  
+# ~/zfuncs/js-to-ts
+# JS -> TS
+# Change extensions underneath a directory
+__js-to-ts() {
+    echo "JS -> TS: Change extensions underneath a directory"
+    echo "-------"
+
     FIND='(**/)(*).js'
     REPLACE='${1}${2}.ts'
-
-    echo "JS -> TS"
-    echo "-------"
+    
     zmv -n $FIND $REPLACE
     echo "-------"
     read "reply?Continue (y/n)?"
 
     if [[ $reply =~ ^[Yy]$ ]]
     then
-        echo "JS->TS Complete"
         zmv $FIND $REPLACE
     fi
+
+    echo "-----------";
+    echo "JS -> TS Complete";
 }
 
 __js-to-ts

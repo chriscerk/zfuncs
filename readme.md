@@ -13,7 +13,7 @@ where `$ZFUNC_PATH` is an alias to this repo.
 
 ## Current Template
 
-Currently used as a [VS Code Snippet](//.vscode/new-zfunc.code-snippets)
+Currently used as a [VS Code Snippet](/.vscode/new-zfunc.code-snippets)
 
 ```bash
 # ~/zfuncs/my-function

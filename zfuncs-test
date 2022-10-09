@@ -1,0 +1,6 @@
+# ~/zfuncs/zfuncs-test
+__zfuncs-test () {
+    echo "Hello world";
+}
+
+__zfuncs-test

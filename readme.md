@@ -11,7 +11,9 @@ where `$ZFUNC_PATH` is an alias to this repo.
 
 [source: zsh guide](https://zsh.sourceforge.io/Guide/zshguide03.html#l49)
 
-## Current Snippet Template
+## Current Template
+
+Currently used as a [VS Code Snippet](//.vscode/new-zfunc.code-snippets)
 
 ```bash
 # ~/zfuncs/my-function

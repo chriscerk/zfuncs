@@ -1,0 +1,47 @@
+# ~/zfuncs/cz-ize
+# Commitizen-ize
+# Utility to commitizen-ize any repo using a languages most popular version, 
+__cz-ize () {
+    echo "Commitizen-ize: Utility to commitizen-ize any repo using a languages most popular version";
+    echo "-----------";
+
+    if [ "$(l | grep -c ".git")" -lt 1 ];
+    then
+        echo "This doesn't appear to be a git repository, aborting."
+        return 1;
+    fi
+
+    if [ "$(which volta | grep -c "volta")" -lt 1 ];
+    then
+        echo "volta is not installed:"
+        echo "repo: https://github.com/volta-cli/volta"
+        return 1;
+    fi
+
+    if [ "$(volta list | grep -c "cz")" -lt 1 ];
+    then
+        echo "volta has not installed commitizen"
+        echo "repo: https://github.com/commitizen/cz-cli"
+        return 1;
+    fi
+
+    if [ "$(echo $CZ_PYTHON | grep -c "cz")" -lt 1 ];
+    then
+        echo "cz (python, non-TS/JS version) has not been installed or exported as \$CZ_PYTHON for:"
+        echo "https://github.com/commitizen-tools/commitizen"
+        return 1;
+    fi
+
+    if [ "$(l | grep -c "package.json")" -ge 1 ];
+    then
+      echo "This appears to be a TS/JS Repo"
+      commitizen init cz-conventional-changelog --yarn --dev --exact
+    else 
+      $CZ_PYTHON init
+    fi
+
+    echo "-----------";
+    echo "Commitizen-ize Complete";
+}
+
+__cz-ize

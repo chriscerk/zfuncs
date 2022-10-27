@@ -9,7 +9,7 @@ __rec() {
 
     if [ -z "$filename" ]
     then
-      echo "Filename is empty string, $USAGE"
+      echo "Filename is empty string, aborting"
       return 1;
     fi
    

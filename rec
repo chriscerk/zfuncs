@@ -1,0 +1,31 @@
+# ~/zfuncs/rec
+# Record
+# Use asciinema to record terminal output to $ASCIINEMA_DIR
+__rec() {
+    echo "Record: Use asciinema to record terminal output to $ASCIINEMA_DIR";
+    echo "-----------";
+
+    read "filename?Filename:"
+
+    if [ -z "$filename" ]
+    then
+      echo "Filename is empty string, $USAGE"
+      return 1;
+    fi
+   
+    echo "Will record to: $ASCIINEMA_DIR/$filename.cast"
+    echo "-------"
+    read "reply?Continue (y/n)?"
+
+    if [[ $reply =~ ^[Yy]$ ]]
+    then
+        asciinema rec "$ASCIINEMA_DIR/$filename.cast"
+    else 
+      echo "User cancelled recording"
+    fi
+
+    echo "-----------";
+    echo "Record Complete";
+}
+
+__rec

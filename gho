@@ -5,8 +5,6 @@ __gho () {
     echo "Github Open: Open current repo on github.com, must be github.com/ORG_OR_USER/REPO directory structure";
     echo "-----------";
 
-    # todo: script here
-
     REPO_PATH=$(pwd | sed -n 's/^.*\(github.*\).*$/\1/p');
 
     SITE_PATH="https://$REPO_PATH";

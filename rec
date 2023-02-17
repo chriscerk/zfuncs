@@ -20,12 +20,14 @@ __rec() {
     if [[ $reply =~ ^[Yy]$ ]]
     then
         asciinema rec "$ASCIINEMA_DIR/$filename.cast"
+        agg "$ASCIINEMA_DIR/$filename.cast" "$ASCIINEMA_DIR/$filename.gif" 
+        echo "Created: \n $ASCIINEMA_DIR/$filename.cast \n $ASCIINEMA_DIR/$filename.gif"
     else 
       echo "User cancelled recording"
     fi
 
     echo "-----------";
-    echo "Record Complete";
+    echo "Recording Complete";
 }
 
 __rec

@@ -1,20 +1,27 @@
 # ~/zfuncs/gho
 # Github Open
 # Open current repo on github.com, must be "github.com/ORG_OR_USER/REPO" directory structure
-__gho () {
-    echo "Github Open: Open current repo on github.com, must be github.com/ORG_OR_USER/REPO directory structure";
-    echo "-----------";
+__gho() {
+    echo "Github Open: Open current repo on github.com, must be github.com/ORG_OR_USER/REPO directory structure"
+    echo "-----------"
 
-    REPO_PATH=$(pwd | sed -n 's/^.*\(github.*\).*$/\1/p');
+    REPO_PATH=$(pwd | sed -n 's/^.*\(github.*\).*$/\1/p')
 
-    SITE_PATH="https://$REPO_PATH";
+    SITE_PATH="https://$REPO_PATH"
+
+    BRANCH=$(git branch --show-current)
+
+    # if branch not main or master, append branch to url
+    if [ "$BRANCH" != "main" ] && [ "$BRANCH" != "master" ]; then
+        SITE_PATH="$SITE_PATH/compare/$BRANCH?expand=1"
+    fi
 
     echo "Opening $SITE_PATH"
 
-    open "$SITE_PATH";
+    open "$SITE_PATH"
 
-    echo "-----------";
-    echo "Github Open Complete";
+    echo "-----------"
+    echo "Github Open Complete"
 }
 
 __gho

@@ -1,0 +1,32 @@
+# ~/zfuncs/js-to-ts
+# GH Collab Update
+# Bulk update collaborators across repositories
+#
+# Pre-reqs:
+#
+# Installation(s):
+# - gh cli
+#
+# Environmental Variable(s):
+# - ORG=some_org
+# - TEAM_SLUG=some_team
+# - PERMISSION=some-permission
+#
+# see:
+# - listing repos: https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
+# -giving permission to a team https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#add-or-update-team-repository-permissions
+__gh-collab-update() {
+  echo "GH Collab Update: Bulk update collaborators across repositories"
+  echo "-------"
+
+  gh repo list ${ORG} --limit 1000 | awk '{print $1}' | while read -r OWNED_REPO; do
+    gh api --method PUT \
+      -H "Accept: application/vnd.github.v3.repository+json" -H "X-GitHub-Api-Version: 2022-11-28" \
+      /orgs/${ORG}/teams/${TEAM_SLUG}/repos/${OWNED_REPO} -f permission=${PERMISSION}
+  done
+
+  echo "-----------"
+  echo "GH Collab Update Complete."
+}
+
+__gh-collab-update

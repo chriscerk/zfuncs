@@ -1,0 +1,22 @@
+# ~/zfuncs/git-is-worktree
+# Git Is Worktree
+# Returns whether the script is running in a linked git worktree.
+__git-is-worktree() {
+    local git_dir common_dir
+
+    git_dir="$(git rev-parse --git-dir 2>/dev/null)"
+    [ -n "$git_dir" ] || return 1
+
+    common_dir="$(git rev-parse --git-common-dir 2>/dev/null)"
+    [ -n "$common_dir" ] || return 1
+
+    echo "git_dir == common_dir: $([ "$git_dir" = "$common_dir" ] && echo true || echo false)"
+
+    if [ "$git_dir" != "$common_dir" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+__git-is-worktree

@@ -1,0 +1,9 @@
+# ~/zfuncs/dev-worktree-prefix
+# Dev Dir Worktree Prefix
+# When using worktrees,
+# the prefix for the worktree directory
+__dev-dir-worktree-prefix() {
+    echo "wt-"
+}
+
+__dev-dir-worktree-prefix

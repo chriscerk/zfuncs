@@ -1,0 +1,16 @@
+# ~/zfuncs/dev-dir-worktree-repo-path
+# Dev Dir Worktree Repo
+# Returns the full repo path for the current git worktree directory
+__dev-dir-worktree-repo-path() {
+    local worktree_prefix worktree_dir repo_name github_org_path
+    worktree_prefix=$(dev-dir-worktree-prefix)
+
+    worktree_dir=$(pwd | rg -o "${worktree_prefix}[^/]+" | sed "s/${worktree_prefix}//")
+    repo_name="$worktree_dir"
+
+    github_org_path=$(pwd | sed "s|/${worktree_prefix}.*||" | rev | cut -d'/' -f1-2 | rev)
+
+    echo "${github_org_path}/${repo_name}"
+}
+
+__dev-dir-worktree-repo-path

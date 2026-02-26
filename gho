@@ -2,10 +2,17 @@
 # Github Open
 # Open current repo on github.com, must be "github.com/ORG_OR_USER/REPO" directory structure
 __gho() {
-    echo "Github Open: Open current repo on github.com, must be github.com/ORG_OR_USER/REPO directory structure"
+    echo "Github Open: Open current repo on github.com"
     echo "-----------"
 
     REPO_PATH=$(pwd | sed -n 's/^.*\(github.*\).*$/\1/p')
+
+    # if inside of a git worktree,
+    # get correct repo path
+    if git-is-worktree; then
+        echo "Inside of a git worktree"
+        REPO_PATH=$(dev-dir-worktree-repo-path)
+    fi
 
     SITE_PATH="https://$REPO_PATH"
 
